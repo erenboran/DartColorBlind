@@ -7,7 +7,7 @@ public class RandomColor : MonoBehaviour
     public Color color;
     void Start()
     {
-        
+        GetComponent<Renderer>().material.color = color;
     }
 
     // Update is called once per frame

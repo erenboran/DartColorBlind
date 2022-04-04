@@ -9,9 +9,12 @@ public class GameManager : MonoBehaviour
     public Rigidbody2D yanlis2;
     private Vector3 kontrol  = new Vector3(0f, -3.51f, 0f);
 
+
+
     void Start()
     {
-        yanlis.GetComponent<Rigidbody2D>();
+       // yanlis.GetComponent<Rigidbody2D>();
+        GetComponent<ColorRandomizer>();
     }
 
     // Update is called once per frame
@@ -31,8 +34,11 @@ public class GameManager : MonoBehaviour
         }
             else if(gameObject.tag == "NextLevel")
         {
-            SceneManager.LoadScene("1");
+            //SceneManager.LoadScene("1");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
         }
+
         else if (gameObject.tag == "Log")
         {
            

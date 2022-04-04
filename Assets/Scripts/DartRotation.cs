@@ -5,7 +5,7 @@ using UnityEngine;
 public class DartRotation : MonoBehaviour
 {
 
-    float degreesPerSecond = 20;
+    public float degreesPerSecond = 20;
     public GameObject arrow;
     public Transform ArrowFirstLoc;
     public Rigidbody2D rb;

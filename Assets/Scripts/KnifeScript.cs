@@ -7,7 +7,8 @@ public class KnifeScript : MonoBehaviour
 
     [SerializeField]
     private Vector2 throwForce;
-
+    [SerializeField]
+    private AudioSource arrowSound;
     //knife shouldn't be controlled by the player when it's inactive 
     //(i.e. it already hit the log / another knife)
     private bool isActive = true;
@@ -16,6 +17,8 @@ public class KnifeScript : MonoBehaviour
     private Rigidbody2D rb;
     //the collider attached to Knife
     private BoxCollider2D knifeCollider;
+ 
+
 
     private void Awake()
     {
@@ -29,10 +32,10 @@ public class KnifeScript : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && isActive)
         {
             //"throwing" the knife
+            arrowSound.Play();
             rb.AddForce(throwForce, ForceMode2D.Impulse);
-            //once the knife isn't stationary, we can apply gravity (it will not automatically fall down)
             rb.gravityScale = 0;
-            //TODO: Decrement number of available knives
+
         }
     }
 
@@ -58,14 +61,13 @@ public class KnifeScript : MonoBehaviour
             knifeCollider.offset = new Vector2(knifeCollider.offset.x, -0.4f);
             knifeCollider.size = new Vector2(knifeCollider.size.x, 1.2f);
 
-            //TODO: Spawn another knife
+
         }
         //collision with another knife
         else if (collision.collider.tag == "Knife")
         {
             //start rapidly moving downwards
             rb.velocity = new Vector2(rb.velocity.x, -2);
-            //TODO: Game Over
         }
     }
 }
